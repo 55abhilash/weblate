@@ -26,7 +26,6 @@ from django.utils.http import urlencode
 from django.utils.safestring import mark_safe
 from django.utils.translation import gettext as _
 from django.views.decorators.cache import never_cache
-
 from weblate.formats.models import EXPORTERS
 from weblate.lang.models import Language
 from weblate.trans.forms import (

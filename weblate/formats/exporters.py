@@ -18,7 +18,6 @@
 #
 """Exporter using translate-toolkit."""
 
-from django.conf import settings
 from django.http import HttpResponse
 from django.utils.functional import cached_property
 from django.utils.translation import gettext_lazy as _
@@ -40,8 +39,6 @@ from weblate.formats.external import XlsxFormat
 from weblate.formats.ttkit import TTKitFormat
 from weblate.trans.util import split_plural, xliff_string_to_rich
 from weblate.utils.site import get_site_url
-from weblate.formats.models import EXPORTERS
-
 
 # Map to remove control characters except newlines and tabs
 _CHARMAP = dict.fromkeys(x for x in range(32) if x not in (9, 10, 13))
