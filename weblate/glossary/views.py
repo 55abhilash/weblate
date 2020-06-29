@@ -54,6 +54,7 @@ EXPORT_TYPES = ("csv", "po", "tbx", "xliff")
 =======
 >>>>>>> Glossary: Dynamic load of export types instead of hardcoded
 
+
 def dict_title(prj, lang):
     """Return glossary title."""
     return _("%(language)s glossary for %(project)s") % {
@@ -399,7 +400,7 @@ def show_glossary(request, project, lang):
         .filter(project=prj, language=lang)
         .exclude(glossary_term=None)[:10]
     )
-    
+
     exporters = [EXPORTERS[exp] for exp in EXPORTERS if exp in EXPORT_TYPES]
 
     exporters = EXPORTERS.list_exporters_filter(EXPORT_TYPES)
