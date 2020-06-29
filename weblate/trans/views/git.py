@@ -23,6 +23,7 @@ from django.utils.translation import gettext as _
 from django.views.decorators.http import require_POST
 from filelock import Timeout
 
+from weblate.trans.models import Translation
 from weblate.trans.util import redirect_param
 from weblate.utils import messages
 from weblate.utils.errors import report_error
@@ -42,7 +43,11 @@ def execute_locked(request, obj, message, call, *args, **kwargs):
             _("Failed to lock the repository, another operation is in progress."),
         )
         report_error()
-
+    #If no translations of a language are left after reset, redirect to component url
+    if call.__name__ == "do_reset" \
+        and type(obj) == type(Translation()) \
+        and len(Translation.objects.filter(component=obj.component, language=obj.language)) == 0:
+        obj = obj.component
     return redirect_param(obj, "#repository")
 
 
