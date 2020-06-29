@@ -49,7 +49,10 @@ from weblate.utils.site import get_site_url
 from weblate.utils.views import get_paginator, get_project, import_message
 
 EXPORT_TYPES = ("csv", "po", "tbx", "xliff")
+<<<<<<< HEAD
 
+=======
+>>>>>>> Glossary: Dynamic load of export types instead of hardcoded
 
 def dict_title(prj, lang):
     """Return glossary title."""
@@ -396,6 +399,8 @@ def show_glossary(request, project, lang):
         .filter(project=prj, language=lang)
         .exclude(glossary_term=None)[:10]
     )
+    
+    exporters = [EXPORTERS[exp] for exp in EXPORTERS if exp in EXPORT_TYPES]
 
     exporters = EXPORTERS.list_exporters_filter(EXPORT_TYPES)
 
