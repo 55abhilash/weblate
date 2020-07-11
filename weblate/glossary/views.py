@@ -49,11 +49,8 @@ from weblate.utils.ratelimit import session_ratelimit_post
 from weblate.utils.site import get_site_url
 from weblate.utils.views import get_paginator, get_project, import_message
 
-EXPORT_TYPES = ("csv", "po", "tbx", "xliff")
-<<<<<<< HEAD
 
-=======
->>>>>>> Glossary: Dynamic load of export types instead of hardcoded
+EXPORT_TYPES = ("csv", "po", "tbx", "xliff")
 
 
 def dict_title(prj, lang):
@@ -402,8 +399,11 @@ def show_glossary(request, project, lang):
         .exclude(glossary_term=None)[:10]
     )
 
+<<<<<<< HEAD
     exporters = [exp for exp in EXPORTERS.list_exporters() if exp['name'] in EXPORT_TYPES]
 
+=======
+>>>>>>> f6937a3fbb89f367a68077c658a1823b2f69f80a
     exporters = EXPORTERS.list_exporters_filter(EXPORT_TYPES)
 
     return render(
